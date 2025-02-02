@@ -1,4 +1,6 @@
 [versions]
+recyclerVersion = "1.4.0"
+
 agp = "8.7.3"
 junit = "4.13.2"
 junitVersion = "1.2.1"
@@ -7,6 +9,8 @@ appcompat = "1.7.0"
 material = "1.12.0"
 
 [libraries]
+recyclerview = { group = "androidx.recyclerview", name = "recyclerview", version.ref = "recyclerVersion"}
+
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
@@ -15,4 +19,3 @@ material = { group = "com.google.android.material", name = "material", version.r
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
-
