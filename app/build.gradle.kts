@@ -4,7 +4,7 @@ plugins {
 
 android {
     namespace = "com.matzy_byte.dayplanner_android"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.matzy_byte.dayplanner_android"
