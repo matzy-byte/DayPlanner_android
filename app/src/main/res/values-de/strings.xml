@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">DayPlanner</string>
+    <string name="item_title">Hinzufügen</string>
+    <string name="item_task">Aufgabe</string>
+    <string name="item_accept">Annehmen</string>
+    <string name="close">Schließen</string>
+    <string name="empty">Liste ist leer</string>
+</resources>
