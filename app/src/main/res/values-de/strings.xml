@@ -6,4 +6,5 @@
     <string name="item_accept">Annehmen</string>
     <string name="close">Schließen</string>
     <string name="empty">Liste ist leer</string>
+    <string name="change_title">Überschreiben</string>
 </resources>

@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements TaskInterface {
 
         itemList = new ArrayList<>();
 
-        adapter = new DayPlannerAdapter(itemList);
+        adapter = new DayPlannerAdapter(itemList, getSupportFragmentManager());
         list.setAdapter(adapter);
 
         btnAdd = findViewById(R.id.btn_add_item);
@@ -55,5 +55,10 @@ public class MainActivity extends AppCompatActivity implements TaskInterface {
     public void onConfirm(String task) {
         adapter.addItem(task);
         txtEmpty.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void onChange(String change, int position) {
+        adapter.setText(change, position);
     }
 }

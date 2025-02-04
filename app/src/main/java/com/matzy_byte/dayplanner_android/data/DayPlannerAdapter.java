@@ -1,5 +1,8 @@
 package com.matzy_byte.dayplanner_android.data;
 
+import android.app.Activity;
+import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,17 +10,22 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.matzy_byte.dayplanner_android.ChangeDialogFragment;
+import com.matzy_byte.dayplanner_android.ItemDialogFragment;
 import com.matzy_byte.dayplanner_android.R;
 
 import java.util.List;
 
 public class DayPlannerAdapter extends RecyclerView.Adapter<DayPlannerAdapter.ViewHolder> {
     private List<PlannedTask> itemList;
+    private FragmentManager supportFragmentManager;
 
-    public DayPlannerAdapter(List<PlannedTask> itemList) {
+    public DayPlannerAdapter(List<PlannedTask> itemList, FragmentManager supportFragmentManager) {
         this.itemList = itemList;
+        this.supportFragmentManager = supportFragmentManager;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -44,8 +52,18 @@ public class DayPlannerAdapter extends RecyclerView.Adapter<DayPlannerAdapter.Vi
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.txtItem.setText(itemList.get(position).getText());
+        holder.txtItem.setOnClickListener(v -> {
+            ChangeDialogFragment dialog = new ChangeDialogFragment();
+            Bundle args = new Bundle();
+            args.putString("task", itemList.get(position).getText());
+            args.putInt("position", position);
+            dialog.setArguments(args);
+            dialog.show(supportFragmentManager, "ChangeItemDialog");
+        });
         if (itemList.get(position).getStatus()) {
-            holder.btnCheck.setImageResource(androidx.constraintlayout.widget.R.drawable.abc_btn_check_to_on_mtrl_015);
+            holder.btnCheck.setImageResource(androidx.constraintlayout.widget.R.drawable.btn_checkbox_checked_mtrl);
+        } else {
+            holder.btnCheck.setImageResource(androidx.constraintlayout.widget.R.drawable.btn_checkbox_unchecked_mtrl);
         }
         holder.btnDelete.setOnClickListener(v -> removeItem(position));
         holder.btnCheck.setOnClickListener(v -> switchStatus(position));
@@ -67,7 +85,10 @@ public class DayPlannerAdapter extends RecyclerView.Adapter<DayPlannerAdapter.Vi
             notifyItemChanged(position);
         }
     }
-
+    public void setText(String text, int position) {
+        itemList.get(position).setText(text);
+        notifyItemChanged(position);
+    }
     public void removeItem(int position) {
         if (position < itemList.size()) {
             itemList.remove(position);

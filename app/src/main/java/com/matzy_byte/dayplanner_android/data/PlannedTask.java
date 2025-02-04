@@ -12,12 +12,13 @@ public class PlannedTask {
     public String getText() {
         return text;
     }
-
+    public boolean getStatus() {
+        return this.status;
+    }
     public void switchStatus() {
         this.status = !this.status;
     }
-
-    public boolean getStatus() {
-        return this.status;
+    public void setText(String text) {
+        this.text = text;
     }
 }
